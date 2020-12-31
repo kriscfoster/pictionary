@@ -12,11 +12,11 @@ class WordController(val wordService: WordService) {
 
     @GetMapping
     fun getWords(
-            @RequestParam(value = "count", defaultValue = 1.toString()) count: Int,
+            @RequestParam(value = "count", defaultValue = "1") count: Int,
             model: Model
     ) : String {
         val words = wordService.getRandomWords(count)
-        model.addAttribute("count", listOf(1, 5))
+        model.addAttribute("count", listOf(1, 3, 5))
         model.addAttribute("words", words)
         return "word"
     }
