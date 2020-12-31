@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam
 class WordController(val wordService: WordService) {
 
     @GetMapping
-    fun getWord(
-            @RequestParam count: Int,
+    fun getWords(
+            @RequestParam(value = "count", defaultValue = 1.toString()) count: Int,
             model: Model
     ) : String {
         val words = wordService.getRandomWords(count)
