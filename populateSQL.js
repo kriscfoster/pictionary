@@ -4,11 +4,10 @@ const duplicates = arr.filter((item, index) => arr.indexOf(item) != index)
 
 console.log(`${arr.length} words\n${duplicates.length} duplicate words: [${duplicates}]`);
 
-
-let string = '';
+let sql = '';
 
 arr.forEach((word) => {
-  string += `INSERT INTO word (name) VALUES ('${word}');\n`
+  sql += `INSERT INTO word (name) VALUES ('${word}');\n`
 })
 
-fs.writeFileSync('./src/main/resources/data.sql', string);
+fs.writeFileSync('./src/main/resources/data.sql', sql);
