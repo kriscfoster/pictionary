@@ -1,13 +1,23 @@
 package com.kriscfoster.pictionary.word
 
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 
-@RestController("/")
+@Controller
+@RequestMapping
 class WordController(val wordService: WordService) {
 
     @GetMapping
-    fun getWord() : Word {
-        return wordService.getWord()
+    fun getWord(
+            @RequestParam count: Int,
+            model: Model
+    ) : String {
+        val words = wordService.getRandomWords(count)
+        model.addAttribute("count", listOf(1, 5))
+        model.addAttribute("words", words)
+        return "word"
     }
 }

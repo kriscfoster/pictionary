@@ -10,5 +10,11 @@ interface WordRepository: JpaRepository<Word, Long> {
             value = "SELECT * FROM word ORDER BY RAND() LIMIT 1",
             nativeQuery = true
     )
-    fun findWord(): Word
+    fun findRandomWord(): List<Word>
+
+    @Query(
+            value = "SELECT * FROM word ORDER BY RAND() LIMIT 5",
+            nativeQuery = true
+    )
+    fun find5RandomWords(): List<Word>
 }

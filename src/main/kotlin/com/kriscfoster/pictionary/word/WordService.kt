@@ -4,7 +4,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class WordService(val wordRepository: WordRepository) {
-    fun getWord(): Word {
-        return wordRepository.findWord()
+    fun getRandomWords(count: Int): List<Word> {
+        return when (count) {
+            5 -> wordRepository.find5RandomWords()
+            else -> wordRepository.findRandomWord()
+        }
     }
 }
